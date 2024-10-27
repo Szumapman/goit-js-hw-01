@@ -1,7 +1,17 @@
 "use strict";
 
 function getElementWidth(content, padding, border) {
-    return parseFloat(content) + parseFloat(padding) * 2 + parseFloat(border) * 2;
+    //  I assume that the function should always receive 3 arguments and they should be in numericpx format, such as 10px, 5px, 2px.
+    if (!content.endsWith("px") || !padding.endsWith("px") || !border.endsWith("px")) {
+        return "Invalid input";
+    }
+    content = parseFloat(content)
+    padding = parseFloat(padding)
+    border = parseFloat(border)
+    if (content < 0 || padding < 0 || border < 0) {
+        return "Invalid input";
+    }
+    return content + padding * 2 + border * 2;
 }
 
 console.log(getElementWidth("50px", "8px", "4px")); // 74
